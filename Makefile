@@ -1,6 +1,7 @@
 CC:=clang
 CARGS:=-Werror -Wall
-BINNAME=sand
+LIBS:=-lSDL3
+BINNAME:=sand
 SRC:= $(wildcard src/*.c)
 
 OBJ:=$(SRC:.c=.o)
@@ -10,10 +11,10 @@ DEPS:=$(SRC:.c=.d)
 # $@ = target
 
 $(BINNAME):$(OBJ)
-	$(CC) $(CARGS) $^ -o $@
+	$(CC) $(CARGS) $^ -o $@ $(LIBS)
 
 %.o:%.c Makefile
-	$(CC) -MMD $(CARGS) -c $< -o $@
+	$(CC) -MMD $(CARGS) -c $< -o $@ 
 
 -include $(DEPS)
 
